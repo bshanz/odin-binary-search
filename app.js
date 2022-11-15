@@ -25,28 +25,28 @@ class Tree {
     let middle = parseInt((start + end) / 2);
     let node = new Node(sortedArr[middle]);
 
-    node.left = buildTree(sortedArr, start, middle - 1);
-    node.right = buildTree(sortedArr, middle + 1, end);
+    node.left = this.buildTree(sortedArr, start, middle - 1);
+    node.right = this.buildTree(sortedArr, middle + 1, end);
     return node;
   }
+
+  // function to insert element
+  insert(root, key) {
+    // if the tree is empty, add the key as the root
+    if (root == null) {
+      root = new Node(key);
+      return root;
+    }
+
+    // Otherwise, recur down the tree
+    if (key < root.key) {
+      root.left = this.insertRec(root.left, key);
+    } else if (key > root.key) {
+      root.right = this.insertRec(root.right, key);
+    }
+    return root;
+  }
 }
-
-// function buildTree(arr, start, end) {
-//   if (start > end) {
-//     return null;
-//   }
-
-//   let noDuplicates = [...new Set(arr)];
-//   let sortedArr = noDuplicates.sort(function (a, b) {
-//     return a - b;
-//   });
-//   let middle = parseInt((start + end) / 2);
-//   let node = new Node(sortedArr[middle]);
-
-//   node.left = buildTree(sortedArr, start, middle - 1);
-//   node.right = buildTree(sortedArr, middle + 1, end);
-//   return node;
-// }
 
 //function to print binary tree in console
 const prettyPrint = (node, prefix = "", isLeft = true) => {
