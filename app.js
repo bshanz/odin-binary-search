@@ -39,10 +39,10 @@ class Tree {
     }
 
     // Otherwise, recur down the tree
-    if (key < root.key) {
-      root.left = this.insertRec(root.left, key);
-    } else if (key > root.key) {
-      root.right = this.insertRec(root.right, key);
+    if (key < root.data) {
+      root.left = this.insert(root.left, key);
+    } else if (key > root.data) {
+      root.right = this.insert(root.right, key);
     }
     return root;
   }
@@ -71,7 +71,12 @@ const binaryTree = new Tree(arr);
 const root = binaryTree.buildTree(arr, 0, n - 1);
 
 // log the tree to console
-console.log(binaryTree.buildTree(arr, 0, n - 1));
+//console.log(binaryTree.buildTree(arr, 0, n - 1));
 
 //log the printed tree to console
-console.log(prettyPrint(root));
+prettyPrint(root);
+
+console.log(prettyPrint(binaryTree.insert(root, 90)));
+console.log(prettyPrint(binaryTree.insert(root, 10)));
+
+// next step in the project is to build a remove function for the binary tree
